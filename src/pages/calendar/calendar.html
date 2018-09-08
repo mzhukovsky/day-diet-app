@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Jadłospis</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h3 text-center> 
+    <ion-icon name="body"></ion-icon>
+    zapo kaloryczne i procentowe
+  </h3><br>
+  <ion-list>
+    <button 
+      ion-item 
+      *ngFor="let mc of menuCard" 
+      (click)="onViewMenu(mc.menu)"
+      [disabled] = "!mc.menu">
+      <h2>{{ mc.weekday | uppercase }}</h2>
+      <p *ngIf="mc.menu">{{ mc.menu.title }} </p>
+    </button>
+  </ion-list>
+</ion-content>

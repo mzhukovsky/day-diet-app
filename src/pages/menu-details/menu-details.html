@@ -1,0 +1,73 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ menu.title }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      {{ menu.nutrionsDesc }}
+    </ion-card-header>
+    <ion-card-content>
+      <div *ngFor="let dish of menu.dishes" class="dish"> <h2><b>{{ dish.name }}</b></h2> 
+        <div *ngFor="let ingredient of dish.ingredients" class="ingredient"> 
+          {{ ingredient.product.name }}, {{ ingredient.convert*ingredient.product.quantity }} {{ ingredient.product.unit }}
+        </div>
+        <br>
+      </div>
+
+
+      <div>
+        <ion-list>
+          <ion-item>
+            <ion-label>ustaw w jadłospisie</ion-label>
+            <ion-select [ngModel]="dayOfMenu" (ngModelChange)="setMenuDay($event)">
+              <ion-option *ngFor="let weekday of weekdayList">{{weekday}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </div>
+
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <!--
+<div class="container">
+  <div class="divTable">
+    <div class="divTableBody">
+      <div class="divTableRow">
+        <div class="divTableCell">produkt</div>
+        <div class="divTableCell">ilość</div>
+        <div class="divTableCell">kcal</div>
+        <div class="divTableCell">T</div>
+        <div class="divTableCell">W</div>
+        <div class="divTableCell">B</div>
+      </div>
+    </div>
+      
+
+      <div *ngFor="let dish of menu.dishes" class="divTableBody">
+        <div *ngFor="let ingredient of dish.ingredients" class="divTableRow">
+          <div class="divTableCell">{{ ingredient.product.name }}</div>
+          <div class="divTableCell">1</div>
+          <div class="divTableCell">22</div>
+          <div class="divTableCell">33</div>
+          <div class="divTableCell">44</div>
+          <div class="divTableCell">55</div>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+-->
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Nowe menu</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Title</ion-label>
+        <ion-input
+          type="text"
+          formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-textarea formControlName="description"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <!--<ion-list formArrayName="dishes">
+      <ion-item
+        *ngFor="let diControl of menuForm.get('dishes').controls; let i = index">
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" [formControlName]="i"></ion-input>
+      </ion-item>
+    </ion-list> -->
+    <ion-row>
+      <ion-col text-right>
+        <button ion-button outline small (click)="onAddDish()" *ngIf="true">Dodaj posiłek</button>
+      </ion-col>
+    </ion-row>
+
+    <br>
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button (click)="onAddMenu(menu)" *ngIf="true">Dodaj menu</button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>
