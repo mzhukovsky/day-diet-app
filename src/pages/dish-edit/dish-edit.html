@@ -1,0 +1,49 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="returnToMenu()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Posiłek</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="dishForm" (ngSubmit)="onSubmit()">
+
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nazwa posiłku (np. śniadanie, omlet itp...)</ion-label>
+        <ion-input
+          type="text"
+          formControlName="mealName"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-list formArrayName="ingredients">
+      <ion-item class="ingredients" *ngFor="let ingredients of ingredientForms.controls; let i = index" [formGroupName]="i">
+        <ion-label fixed>{{ getProductName(i) }}</ion-label>
+        <ion-input type="text" formControlName="convert"></ion-input>
+      </ion-item>
+    </ion-list>
+    
+    
+    <ion-row>
+      <ion-col text-right>
+        <button type="button" ion-button outline small (click)="onManageIngredients()" *ngIf="true">Dodaj składnik</button>
+      </ion-col>
+    </ion-row>
+
+    <button
+      type="submit"
+      ion-button
+      block
+      [disabled]="false">Dodaj posiłek
+    </button>
+
+
+  </form>
+</ion-content>

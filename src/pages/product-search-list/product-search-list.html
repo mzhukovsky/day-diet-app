@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="returnToDish()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Produkt</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let product of productList" (click)="onClick(product)">
+      {{ product.name }} <ion-note>({{product.quantity}} {{product.unit}})</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

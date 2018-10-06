@@ -4,16 +4,21 @@ import startProducts from '../data/products'
 
 @Injectable()
 export class ProductsService {
-  products: Product[];
+  products: Product[] = [];
 
   constructor(){
-   this.setProducts(startProducts);  }
-
-  setProducts(startProducts){
-    this.products = startProducts
+   this.setProducts(startProducts);  
   }
 
-  getProducts(){
+  setProducts(startProducts) {
+    startProducts.forEach(element => {
+      let product = new Product(element.id,element.name,element.unit, element.quantity, 
+                                element.kcal,element.fat,element.carbs, element.protein)
+      this.products.push(product)
+    });
+  }
+
+  getProducts() : Product[] {
     return this.products;
   }
 

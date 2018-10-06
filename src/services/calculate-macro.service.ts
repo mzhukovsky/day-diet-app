@@ -23,7 +23,7 @@ export class CalculateMacroService {
 
   calculateIngredientNutrientsDesc(ingredient: Ingredient): string{
     const nutrients = this.calculateIngredientNutrients(ingredient)
-    return nutrients.kcal+"kcal (T:"+nutrients.fat+", W:"+nutrients.carbs+", B:"+nutrients.protein+")"; //
+    return nutrients.kcal+"kcal (T:"+nutrients.fat+", W:"+nutrients.carbs+", B:"+nutrients.protein+")";
   }
 
   calculateDishNutrients(dish: Dish): Nutrients{
@@ -36,7 +36,7 @@ export class CalculateMacroService {
 
   calculateDishNutrientsDesc(dish: Dish): string{
     const nutrients = this.calculateDishNutrients(dish)
-    return nutrients.kcal+"kcal (T:"+nutrients.fat+", W:"+nutrients.carbs+", B:"+nutrients.protein+")"; //
+    return nutrients.kcal+"kcal (T:"+nutrients.fat+", W:"+nutrients.carbs+", B:"+nutrients.protein+")";
   }
 
   calculateMenuNutrients(menu: Menu): Nutrients {
@@ -49,6 +49,6 @@ export class CalculateMacroService {
 
   calculateMenuNutrientsDesc(menu: Menu): string{
     const nutrients = this.calculateMenuNutrients(menu)
-    return nutrients.kcal+"kcal (T:"+nutrients.fat+", W:"+nutrients.carbs+", B:"+nutrients.protein+")"; //
+    return nutrients.kcal+"kcal (T:"+nutrients.fat+", W:"+nutrients.carbs+", B:"+nutrients.protein+")";
   }
 }

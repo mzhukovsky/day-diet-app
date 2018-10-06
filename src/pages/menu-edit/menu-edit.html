@@ -22,25 +22,39 @@
       </ion-item>
     </ion-list>
 
-    <!--<ion-list formArrayName="dishes">
-      <ion-item
-        *ngFor="let diControl of menuForm.get('dishes').controls; let i = index">
-        <ion-label floating>Name</ion-label>
-        <ion-input type="text" [formControlName]="i"></ion-input>
-      </ion-item>
-    </ion-list> -->
+    <ion-list formArrayName="dishes">
+      <button
+        type="button"
+        ion-item
+        *ngFor="let dishes of dishForms.controls; let i = index"
+        [formGroupName]="i"
+        (click)="itemSelected(item)">
+        <h2>{{ getMealName(i) }}</h2>
+        <ion-note>{{ getDishNutrientsDesc(i) }}</ion-note><br>
+      </button>
+    </ion-list>
+
+
+    <ion-note *ngIf="this.dishForms.controls.length > 0">RAZEM {{ descMenu }}</ion-note>
+
+
+
+
     <ion-row>
       <ion-col text-right>
-        <button ion-button outline small (click)="onAddDish()" *ngIf="true">Dodaj posiłek</button>
+        <button type="button" ion-button outline small (click)="onManageDish()" *ngIf="true">Dodaj posiłek</button>
       </ion-col>
     </ion-row>
 
-    <br>
-    <ion-row>
-      <ion-col text-center>
-        <button ion-button (click)="onAddMenu(menu)" *ngIf="true">Dodaj menu</button>
-      </ion-col>
-    </ion-row>
+    <button
+      type="submit"
+      ion-button
+      block
+      [disabled]="false">Dodaj menu
+    </button>
+
+
 
   </form>
+
 </ion-content>

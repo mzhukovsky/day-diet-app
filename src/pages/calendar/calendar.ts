@@ -24,7 +24,6 @@ export class CalendarPage {
 
   ionViewWillEnter() {
     this.menuCard = this.utilService.getMenuCard();
-    console.log("menuCard", this.menuCard)
   }
 
   /*onClose(){

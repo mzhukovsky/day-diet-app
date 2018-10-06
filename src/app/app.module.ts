@@ -10,7 +10,9 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { MenuListPage } from '../pages/menu-list/menu-list';
 import { MenuDetailsPage } from '../pages/menu-details/menu-details';
 import { MenuEditPage } from '../pages/menu-edit/menu-edit';
-import { DishListPage } from '../pages/dish-list/dish-list';
+import { DishEditPage } from '../pages/dish-edit/dish-edit';
+import { ProductSearchListPage } from "../pages/product-search-list/product-search-list";
+
 import { MenusService } from "../services/menus.service";
 import { ProductsService } from "../services/products.service";
 import { CalculateMacroService } from "../services/calculate-macro.service";
@@ -24,7 +26,8 @@ import { UtilService } from "../services/util.service";
     MenuListPage,
     MenuDetailsPage,
     MenuEditPage,
-    DishListPage,
+    DishEditPage,
+    ProductSearchListPage,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { UtilService } from "../services/util.service";
     MenuListPage,
     MenuDetailsPage,
     MenuEditPage,
-    DishListPage,
+    DishEditPage,
+    ProductSearchListPage,
   ],
   providers: [
     MenusService,

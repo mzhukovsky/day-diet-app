@@ -10,7 +10,7 @@ import { Weekday } from "../models/weekday.model";
 
 @Injectable()
 export class MenusService {
-  private menus: Menu[] = [];
+  public menus: Menu[] = [];
 
   constructor(public productsService: ProductsService){
     this.add();
