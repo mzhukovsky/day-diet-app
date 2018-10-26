@@ -69,8 +69,11 @@ export class MenuEditPage implements OnInit {
     const modal = this.modalCrtl.create(DishEditPage);
     modal.present();
     modal.onDidDismiss((dish:Dish) => {
-      this.addDish(dish);
-      this.getMenuNutrientsDesc();
+      if(dish){
+        console.log("dish",dish)
+        this.addDish(dish);
+        this.getMenuNutrientsDesc();
+      }
     });
   }
 
@@ -93,7 +96,6 @@ export class MenuEditPage implements OnInit {
   }
 
   onSubmit() {
-    const formValue = this.menuForm.value;
     this.menusService.menus.push(this.getCurrentMenu());
 
     this.navCtrl.pop();

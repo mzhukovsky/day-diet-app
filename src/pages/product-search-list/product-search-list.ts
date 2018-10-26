@@ -1,27 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { ViewController, NavController } from "ionic-angular";
 import { UtilService } from "../../services/util.service";
 import { Product } from "../../models/product.model";
 import { ProductsService } from "../../services/products.service";
+import { Observable } from 'rxjs'; import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'page-product-search-list',
   templateUrl: 'product-search-list.html',
 })
-export class ProductSearchListPage {
+export class ProductSearchListPage implements OnInit {
 
-  searchQuery: string = '';
-  productList: Product[] = [];
+  @Output() onSelected = new EventEmitter;
+  private searchQuery: string = '';
+  private productsDB: Product[] = [];
+  private currentProductList: Product[] = [];
 
-  constructor(private viewCtrl: ViewController,
-              private navCtrl: NavController,
-              private utilService: UtilService,
-              private productsService: ProductsService) { 
-    this.initializeItems();
+  constructor(private productsService: ProductsService) { }
+
+  ngOnInit() {
+    this.getProductList();
+  }
+
+  private getProductList() {
+    this.productsService.getProductsList().snapshotChanges().map(changes => {
+      return changes.map(item => ({ $key: item.payload.key, ...item.payload.val() }));
+    }).subscribe( productList => {
+      this.productsDB = productList;
+      this.initializeItems()
+    });
   }
 
   private initializeItems() {
-    this.productList = this.productsService.getProducts()
+    this.currentProductList = this.productsDB;
+  }
+
+  private onSelect(product: Product){
+    this.onSelected.emit(product);
   }
 
   getItems(ev: any) {
@@ -33,18 +49,9 @@ export class ProductSearchListPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      this.productList = this.productList.filter((product) => {
+      this.currentProductList = this.currentProductList.filter((product) => {
         return (product.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
-
-  private onClick(item){
-    this.viewCtrl.dismiss(item)
-  }
-
-  returnToDish(){
-    this.navCtrl.pop();
-  }
-
 }

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Ustawienia</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>imię</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>wiek</ion-label>
+        <ion-input type="number" formControlName="age"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>waga</ion-label>
+        <ion-input type="number" formControlName="weight"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>wzrost</ion-label>
+        <ion-input type="number" formControlName="height"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button block type="submit" [disabled]="userProfileForm.invalid">Aktualizuj dane</button>
+    </ion-list>
+  </form>
+</ion-content>
+

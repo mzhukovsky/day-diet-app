@@ -24,7 +24,7 @@ export class MenuListPage {
   }
 
   onNewMenu() {
-    this.navCtrl.push(MenuEditPage, {mode: 'New'});
+    this.navCtrl.push(MenuEditPage);
   }
 
   onEditMenu(menu: Menu, index: number) {

@@ -64,7 +64,7 @@ export class UtilService {
   initProducts(){
     const products: Array<Product> = [];
     productListData.forEach(obj =>{
-      products.push(obj);
+      //products.push(obj);
     })
     return products;
   }

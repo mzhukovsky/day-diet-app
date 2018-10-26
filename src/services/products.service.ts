@@ -1,30 +1,58 @@
-import { Injectable } from "@angular/core";
-import { Product } from "../models/product.model";
-import startProducts from '../data/products'
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+
+import { Product } from '../models/product.model';
 
 @Injectable()
 export class ProductsService {
-  products: Product[] = [];
+  
+  private readonly dbPath = 'products'; // zmienić na /products
+  productsRef: AngularFireList<any> = null;
 
-  constructor(){
-   this.setProducts(startProducts);  
+  constructor(private afDatabase: AngularFireDatabase) {
+    this.productsRef = afDatabase.list(this.dbPath);
   }
 
-  setProducts(startProducts) {
-    startProducts.forEach(element => {
-      let product = new Product(element.id,element.name,element.unit, element.quantity, 
-                                element.kcal,element.fat,element.carbs, element.protein)
-      this.products.push(product)
-    });
+  create(prod: Product): void {
+    // zwracany obiekt z this.productForm.value lub this.productForm.getRawValue()
+    // ma same stringi więc trzeba je zamieniać. Trzeba to przerobić.
+
+    let product = {
+      name: prod.name,
+      unit: prod.unit,
+      quantity: Number(prod.quantity),
+      kcal: Number(prod.kcal),
+      fat: Number(prod.fat),
+      carbs: Number(prod.carbs),
+      protein: Number(prod.protein)
+    }
+
+    this.productsRef.push(product).then( () => console.log("Dodano nowy produkt"));
   }
 
-  getProducts() : Product[] {
-    return this.products;
+  update(prod: Product): void {
+    let product = {
+      name: prod.name,
+      unit: prod.unit,
+      quantity: prod.quantity,
+      kcal: prod.kcal,
+      fat: prod.fat,
+      carbs: prod.carbs,
+      protein: prod.protein
+    }
+    
+    this.productsRef.update(prod.$key, product)
+    .then( () => console.log("Zaaktualizowano produkt"))
+    .catch(error => console.log(error)); // TODO obsługa błędu tak jak w signin
   }
 
-  getProduct(id: number): Product {
-    return this.products.find((prodEl: Product)=> {
-      return prodEl.id == id;
-    })
+  delete(key: string): void {
+    this.productsRef.remove(key).catch(error => console.log(error));
+  }
+
+  getProductsList(): AngularFireList<Product> {
+    return this.productsRef;
   }
 }

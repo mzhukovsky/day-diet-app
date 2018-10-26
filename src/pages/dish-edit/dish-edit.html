@@ -25,8 +25,8 @@
 
     <ion-list formArrayName="ingredients">
       <ion-item class="ingredients" *ngFor="let ingredients of ingredientForms.controls; let i = index" [formGroupName]="i">
-        <ion-label fixed>{{ getProductName(i) }}</ion-label>
-        <ion-input type="text" formControlName="convert"></ion-input>
+        <ion-label floating>{{ getProductName(i) }}</ion-label>
+        <ion-input type="number" formControlName="convert"></ion-input>
       </ion-item>
     </ion-list>
     
@@ -43,7 +43,5 @@
       block
       [disabled]="false">Dodaj posiłek
     </button>
-
-
   </form>
 </ion-content>

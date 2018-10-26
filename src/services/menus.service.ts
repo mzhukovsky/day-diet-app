@@ -40,7 +40,7 @@ export class MenusService {
         let ingredients: Array<Ingredient> = [];
 
         for(const smdi of smd.ingredients){
-          ingredients.push(new Ingredient(this.productsService.getProduct(smdi.id_produkt), smdi.convert));
+          //ingredients.push(new Ingredient(this.productsService.getProduct(smdi.id_produkt), smdi.convert));
         }
 
        dishes.push(new Dish(smd.name, ingredients));

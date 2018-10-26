@@ -1,5 +1,5 @@
 export class Product {
-  constructor(public id: number, 
+  constructor(public $key: string,
               public name: string,
               public unit: string,
               public quantity: number,

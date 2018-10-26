@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button *ngIf="mode == 'select'" ion-button icon-only (click)="returnToDish()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <button *ngIf="mode == 'edit'" ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button *ngIf="mode == 'edit'" ion-button icon-only (click)="onNewProduct()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Produkt</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <page-product-search-list (onSelected)="onClick($event)"></page-product-search-list>
+</ion-content>

@@ -10,7 +10,7 @@ export class CalculateMacroService {
   constructor(){ }
 
   calculate(number: number, convert: number): number{
-    return number*convert;
+    return Number((number*convert).toFixed(1)) ;
   }
 
   calculateIngredientNutrients(ingredient: Ingredient): Nutrients {

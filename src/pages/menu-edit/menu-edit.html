@@ -1,23 +1,20 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Nowe menu</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
     <ion-list>
       <ion-item>
-        <ion-label floating>Title</ion-label>
+        <ion-label floating>nazwa</ion-label>
         <ion-input
           type="text"
           formControlName="title"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Description</ion-label>
+        <ion-label fixed>opis...</ion-label>
         <ion-textarea formControlName="description"></ion-textarea>
       </ion-item>
     </ion-list>

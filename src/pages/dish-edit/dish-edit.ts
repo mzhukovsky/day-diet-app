@@ -4,7 +4,7 @@ import { Dish } from "../../models/dish.model";
 import { Ingredient } from "../../models/ingredient.model";
 import { Product } from "../../models/product.model";
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from "@angular/forms";
-import { ProductSearchListPage } from "../product-search-list/product-search-list";
+import { ProductsPage } from "../products/products";
 
 @Component({
   selector: 'page-dish-edit',
@@ -13,6 +13,8 @@ import { ProductSearchListPage } from "../product-search-list/product-search-lis
 /*
   wytłumaczenie reactive forms 
   https://www.youtube.com/watch?v=JeeUY6WaXiA
+  lub
+  https://blog.grossman.io/real-world-angular-reactive-forms/
 */
 export class DishEditPage implements OnInit{
 
@@ -31,11 +33,13 @@ export class DishEditPage implements OnInit{
     });
   }
 
-  private onManageIngredients(){
-    const modal = this.modalCrtl.create(ProductSearchListPage);
+  private onManageIngredients() {
+    const modal = this.modalCrtl.create(ProductsPage, {mode: 'select'});
     modal.present();
     modal.onDidDismiss((product:Product) => {
-      this.addIngredient(product)
+      if(product){
+        this.addIngredient(product)
+      }
     });
   }
 
@@ -58,7 +62,7 @@ export class DishEditPage implements OnInit{
 
   private getProductName(index: number): string {
     // sprawdzić inne metody (moze at(0 ?)) https://angular.io/api/forms/FormArray
-    let product = this.ingredientForms.getRawValue()[index].product;
+    const product = this.ingredientForms.getRawValue()[index].product;
     return product.name+" ("+product.quantity+" "+product.unit+")";
   }
 
